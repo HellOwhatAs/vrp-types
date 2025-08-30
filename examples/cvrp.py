@@ -21,10 +21,7 @@ matrix = mat.Matrix(
 
 # specify termination criteria: max running time in seconds or max amount of refinement generations
 config = cfg.Config(
-    termination=cfg.TerminationConfig(
-        maxTime=5,
-        maxGenerations=1000,
-    ),
+    termination=cfg.TerminationConfig(maxTime=5),
     telemetry=cfg.TelemetryConfig(progress=cfg.ProgressConfig(enabled=True)),
 )
 
@@ -122,4 +119,4 @@ problem = prg.Problem(
 )
 
 solution = solve(problem=problem, matrix=[matrix], config=config)
-print(solution.model_dump_json(indent=4))
+print(solution.model_dump_json())
