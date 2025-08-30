@@ -8,6 +8,3 @@ wheels/
 
 # Virtual environments
 .venv
-
-# Pydantic-generated files
-**/schemas/model_*.py

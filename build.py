@@ -13,6 +13,7 @@ class CustomBuildHook(BuildHookInterface):
                 json_schema,
                 input_file_type=InputFileType.JsonSchema,
                 input_filename=f"{name}.json",
+                disable_timestamp=True,
                 output=Path(f"src/vrp_types/schemas/model_{name}.py"),
                 output_model_type=DataModelType.PydanticV2BaseModel,
                 field_constraints=True,
