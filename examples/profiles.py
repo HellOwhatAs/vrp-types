@@ -1,5 +1,4 @@
 from vrp_types import cfg, mat, prg, solve
-from pprint import pprint
 import matplotlib.pyplot as plt
 import random
 
@@ -32,7 +31,7 @@ problem = prg.Problem(
                 typeId="vehicle_type_1",
                 vehicleIds=[f"vehicle_1_{i}" for i in range(1, 30)],
                 capacity=[12],
-                costs=prg.VehicleCosts(distance=2.0, time=0.0, fixed=2000.0),
+                costs=prg.VehicleCosts(distance=2.0, time=0.0),
                 profile=prg.VehicleProfile(matrix="normal"),
                 shifts=[
                     prg.VehicleShift(
@@ -51,7 +50,7 @@ problem = prg.Problem(
                 typeId="vehicle_type_2",
                 vehicleIds=[f"vehicle_2_{i}" for i in range(1, 10)],
                 capacity=[60],
-                costs=prg.VehicleCosts(distance=1.0, time=0.0),
+                costs=prg.VehicleCosts(distance=1.0, time=0.0, fixed=150000.0),
                 profile=prg.VehicleProfile(matrix="not-normal"),
                 shifts=[
                     prg.VehicleShift(
@@ -104,7 +103,7 @@ matrix = [
 ]
 
 config = cfg.Config(
-    termination=cfg.TerminationConfig(maxTime=60),
+    termination=cfg.TerminationConfig(maxTime=120),
     telemetry=cfg.TelemetryConfig(progress=cfg.ProgressConfig(enabled=True)),
 )
 
@@ -127,4 +126,4 @@ plt.scatter(
     marker="x",
 )
 plt.show()
-pprint(solution.model_dump_json())
+print(solution.model_dump_json())

@@ -1,4 +1,5 @@
 from vrp_types import prg, mat, cfg, solve
+import matplotlib.pyplot as plt
 
 # fmt: off
 matrix = mat.Matrix(
@@ -120,3 +121,10 @@ problem = prg.Problem(
 
 solution = solve(problem=problem, matrix=[matrix], config=config)
 print(solution.model_dump_json())
+
+for tour in solution.tours:
+    plt.plot(
+        [stop.root.location.root.lat for stop in tour.stops],
+        [stop.root.location.root.lng for stop in tour.stops],
+    )
+plt.show()

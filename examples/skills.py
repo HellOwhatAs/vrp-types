@@ -1,6 +1,5 @@
 from vrp_types import cfg, mat, prg, solve
 from itertools import chain
-from pprint import pprint
 import matplotlib.pyplot as plt
 import random
 from math import ceil
@@ -108,4 +107,4 @@ plt.scatter(
     [x for x, _ in coord_list[1::2]], [y for _, y in coord_list[1::2]], marker="x"
 )
 plt.show()
-pprint(solution.model_dump_json())
+print(solution.model_dump_json())

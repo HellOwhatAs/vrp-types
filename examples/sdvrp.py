@@ -1,5 +1,5 @@
 from vrp_types import prg, mat, cfg, solve
-from itertools import chain
+import matplotlib.pyplot as plt
 
 # fmt: off
 demands = [
@@ -24,14 +24,6 @@ coord_list = [
     (66, 8), (59, 5), (35, 60), (27, 24), (40, 20), (40, 37)
 ]
 # fmt: on
-
-
-def dist_matrix(coord_list: list[tuple[int, int]]) -> list[list[int]]:
-    return [
-        [int(((x1 - x2) ** 2 + (y1 - y2) ** 2) ** 0.5) for x2, y2 in coord_list]
-        for x1, y1 in coord_list
-    ]
-
 
 problem = prg.Problem(
     fleet=prg.Fleet(
@@ -81,7 +73,11 @@ problem = prg.Problem(
 )
 
 matrix = mat.Matrix(
-    distances=list(chain.from_iterable(dist_matrix(coord_list))),
+    distances=[
+        round(((x1 - x2) ** 2 + (y1 - y2) ** 2) ** 0.5)
+        for x1, y1 in coord_list
+        for x2, y2 in coord_list
+    ],
     travelTimes=[0] * (len(coord_list) ** 2),
     profile="normal",
 )
@@ -92,4 +88,13 @@ config = cfg.Config(
 )
 
 solution = solve(problem=problem, matrix=[matrix], config=config)
+
+for tour in solution.tours:
+    plt.plot(
+        [coord_list[stop.root.location.root.index][0] for stop in tour.stops],
+        [coord_list[stop.root.location.root.index][1] for stop in tour.stops],
+        marker="o",
+    )
+plt.show()
+
 print(solution.model_dump_json())
