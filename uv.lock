@@ -764,7 +764,7 @@ wheels = [
 [[package]]
 name = "vrp-cli"
 version = "1.25.0"
-source = { git = "https://github.com/HellOwhatAs/vrp?subdirectory=vrp-cli&rev=master#e84cc48e677e93ead13ed1a3cde53865c6512ee1" }
+source = { git = "https://github.com/HellOwhatAs/vrp?subdirectory=vrp-cli&rev=v1.25.0-schema#fb6e54f4f28b9634687a183ecafad0dd951963c9" }
 
 [[package]]
 name = "vrp-types"
@@ -788,6 +788,6 @@ requires-dist = [
     { name = "hatchling", marker = "extra == 'dev'" },
     { name = "matplotlib", marker = "extra == 'dev'" },
     { name = "pydantic", specifier = ">=2.11.7" },
-    { name = "vrp-cli", git = "https://github.com/HellOwhatAs/vrp?subdirectory=vrp-cli&rev=master" },
+    { name = "vrp-cli", git = "https://github.com/HellOwhatAs/vrp?subdirectory=vrp-cli&rev=v1.25.0-schema" },
 ]
 provides-extras = ["dev"]

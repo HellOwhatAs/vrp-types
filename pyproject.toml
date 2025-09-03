@@ -18,5 +18,6 @@ build-backend = "hatchling.build"
 path = "build.py"
 
 [tool.uv.sources]
-vrp-cli = { git = "https://github.com/HellOwhatAs/vrp", subdirectory = "vrp-cli", rev = "master" }
+vrp-cli = { git = "https://github.com/HellOwhatAs/vrp", subdirectory = "vrp-cli", rev = "v1.25.0-schema" } # NOTE: fixed EVRP
 # vrp-cli = { git = "https://github.com/HellOwhatAs/vrp", subdirectory = "vrp-cli", rev = "v1.24.0-schema" }
+# vrp-cli = { git = "https://github.com/HellOwhatAs/vrp", subdirectory = "vrp-cli", rev = "master" } # NOTE: bug in EVRP

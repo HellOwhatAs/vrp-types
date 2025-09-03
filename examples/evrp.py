@@ -395,7 +395,8 @@ problem = {
                                     "location": {"lat": 52.5064, "lng": 13.5011},
                                     "duration": 900,
                                 },
-                            ],
+                            ]
+                            * 3,
                         },
                     }
                 ],
@@ -409,43 +410,6 @@ problem = {
 problem = prg.Problem.model_validate(problem)
 
 config = cfg.Config(
-    termination=cfg.TerminationConfig(maxTime=100),
-    evolution=cfg.EvolutionConfig.model_validate(
-        {
-            "initial": {
-                "method": {"type": "cheapest", "weight": 1},
-                "alternatives": {
-                    "methods": [
-                        {"type": "farthest", "weight": 1},
-                        {"type": "nearest", "weight": 1},
-                        {"type": "gaps", "min": 2, "max": 20, "weight": 1},
-                        {"type": "skip-best", "start": 1, "end": 2, "weight": 1},
-                        {"type": "regret", "start": 2, "end": 3, "weight": 1},
-                        {"type": "blinks", "weight": 1},
-                        {
-                            "type": "perturbation",
-                            "probability": 0.33,
-                            "min": -0.2,
-                            "max": 0.2,
-                            "weight": 1,
-                        },
-                    ],
-                    "maxSize": 200,
-                    "quota": 0.05,
-                },
-            },
-            "population": {
-                "type": "rosomaxa",
-                "selectionSize": 800,
-                "maxEliteSize": 200,
-                "maxNodeSize": 200,
-                "spreadFactor": 0.9,
-                "distributionFactor": 0.9,
-                "rebalanceMemory": 100,
-                "explorationRatio": 0.9,
-            },
-        }
-    ),
     telemetry=cfg.TelemetryConfig(progress=cfg.ProgressConfig(enabled=True)),
 )
 
@@ -460,11 +424,16 @@ stations = [
 ]
 plt.scatter([i.lat for i in jobs], [i.lng for i in jobs])
 plt.scatter([i.lat for i in stations], [i.lng for i in stations], marker="x")
-
+plt.scatter(
+    [problem.fleet.vehicles[0].shifts[0].start.location.root.lat],
+    [problem.fleet.vehicles[0].shifts[0].start.location.root.lng],
+    marker="*",
+    s=150,
+    c="red",
+)
 for tour in solution.tours:
     plt.plot(
         [stop.root.location.root.lat for stop in tour.stops],
         [stop.root.location.root.lng for stop in tour.stops],
     )
-
 plt.show()

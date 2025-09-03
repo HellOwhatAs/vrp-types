@@ -157,13 +157,6 @@ class Objective15(BaseModel):
     type: Literal['fast-service']
 
 
-class Objective16(BaseModel):
-    levels: Annotated[
-        int, Field(description='Number of levels in area hierarchy.', ge=0)
-    ]
-    type: Literal['hierarchical-areas']
-
-
 class RelationType(RootModel[str]):
     root: Annotated[str, Field(description='Relation type.')]
 
@@ -576,7 +569,7 @@ class Problem(BaseModel):
     plan: Annotated[Plan, Field(description='Problem plan: customers to serve.')]
 
 
-class Objective17(BaseModel):
+class Objective16(BaseModel):
     objectives: Annotated[
         List[Objective],
         Field(
@@ -608,7 +601,6 @@ class Objective(
             Objective14,
             Objective15,
             Objective16,
-            Objective17,
         ]
     ]
 ):
@@ -630,11 +622,10 @@ class Objective(
             Objective14,
             Objective15,
             Objective16,
-            Objective17,
         ],
         Field(description='Specifies objective function types.'),
     ]
 
 
 Problem.model_rebuild()
-Objective17.model_rebuild()
+Objective16.model_rebuild()
