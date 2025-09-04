@@ -60,9 +60,6 @@
 ![skills](https://github.com/user-attachments/assets/53a757ba-c926-417d-a7c0-800aec3ca769)
 
 </td>
-<td>
-</td>
-
 </tr>
 
 </table>
