@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 import random
 from cycler import Cycler
 
-n = 10
+n = 20
 
 problem = prg.Problem(
     plan=prg.Plan(
@@ -93,7 +93,7 @@ matrix = [
 ]
 
 config = cfg.Config(
-    termination=cfg.TerminationConfig(maxTime=40),
+    termination=cfg.TerminationConfig(maxTime=120),
     telemetry=cfg.TelemetryConfig(progress=cfg.ProgressConfig(enabled=True)),
 )
 

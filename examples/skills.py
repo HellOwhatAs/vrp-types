@@ -106,5 +106,6 @@ plt.scatter([x for x, _ in coord_list[::2]], [y for _, y in coord_list[::2]])
 plt.scatter(
     [x for x, _ in coord_list[1::2]], [y for _, y in coord_list[1::2]], marker="x"
 )
+plt.axis("equal")
 plt.show()
 print(solution.model_dump_json())
